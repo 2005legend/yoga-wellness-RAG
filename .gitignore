@@ -181,3 +181,10 @@ tmp/
 .env.local
 .env.production
 secrets/
+
+# Kiro IDE files
+.kiro/
+
+# Assignment and documentation files
+Assignment*.txt
+Assignment*.md
