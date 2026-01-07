@@ -1,0 +1,45 @@
+﻿Assignment - NextYou
+
+
+As part of our evaluation process for the AI Engineer Intern (Founding Tech Team) role at NextYou, we invite interested and eligible students to participate in a technical assignment focused on building a real-world Retrieval-Augmented Generation (RAG) based AI application in the wellness domain.
+
+
+This assignment is designed to assess students’ understanding of RAG architectures, LLM integration, backend safety logic, and system-level product thinking, rather than just surface-level API usage.
+
+
+
+Assignment Overview
+Participants are required to design and build a full-stack AI micro-application titled: “Ask Me Anything”
+
+
+The application should:
+* Use a structured wellness / yoga knowledge base (Knowledge base will be provided by us)
+* Implement a complete RAG pipeline (chunking, embeddings, retrieval)
+* Include backend safety logic for health-related and sensitive queries
+* Log user queries, retrieved context, generated responses, and safety flags in MongoDB
+* Focus of assignment should be more inclined towards RAG & Backend.
+ A good UI is good to have.
+
+
+Participants are expected to submit:
+* A GitHub repository with frontend, backend, and RAG logic
+* A README explaining architecture, RAG design, safety logic, and setup steps
+* A short demo video (2–5 minutes) showcasing the working application
+* A detailed report explaining the design choices and implementation of the RAG pipeline
+    
+Evaluation Criteria
+* RAG Architecture Design: The application should be well-structured, efficient, and scalable.
+* Backend Safety Logic: The application should include measures to prevent harmful or inappropriate queries.
+* User Experience: The application should be user-friendly and provide a seamless experience.
+* Code Quality: The code should be well-documented, modular, and follow industry best practices.
+* Documentation: The README should explain the architecture, RAG design, safety logic, and setup steps.
+* Demo Video: The video should showcase the working application and explain the design choices and implementation of the RAG pipeline.
+* Report: The report should explain the design choices and implementation of the RAG pipeline, and explain the safety logic and setup steps.
+
+
+.
+
+
+
+
+
