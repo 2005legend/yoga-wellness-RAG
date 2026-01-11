@@ -188,3 +188,26 @@ secrets/
 # Assignment and documentation files
 Assignment*.txt
 Assignment*.md
+FINAL_FIXES.md
+FIXES_APPLIED.md
+FIXES_COMPLETE.md
+IMPLEMENTATION_STATUS.md
+IMPLEMENTATION_SUMMARY.md
+RAG_ARCHITECTURE_VALIDATION.md
+TROUBLESHOOTING.md
+SETUP_NVIDIA.md
+
+# Test output files
+gen_result.txt
+log_result.txt
+results.txt
+test_log_fail.txt
+test_output.txt
+test_output_2.txt
+test_routes_output.txt
+server_error.txt
+
+# Debug files
+debug_*.py
+run_*_test.py
+run_unit_tests_manual.py

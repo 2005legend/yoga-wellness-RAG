@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga Wellness Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧘 Yoga Wellness Assistant</h1>
+            <p>Ask me anything about yoga poses, breathing techniques, and wellness.</p>
+        </header>
+
+        <main>
+            <div class="chat-container">
+                <div id="chat-history" class="chat-history">
+                    <div class="message system">
+                        <div class="message-content">
+                            Namaste! I am your AI Yoga companion. How can I help you today?
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-area">
+                    <form id="chat-form">
+                        <input type="text" id="user-input" placeholder="e.g., How do I do Downward Dog?" autocomplete="off" required>
+                        <button type="submit" id="send-btn">
+                            <span class="send-icon">➤</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by RAG & LLM technology. Disclaimer: Not medical advice.</p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

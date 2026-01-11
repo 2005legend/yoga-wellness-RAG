@@ -10,7 +10,7 @@ from unittest.mock import AsyncMock, MagicMock
 os.environ["TESTING"] = "true"
 os.environ["LOG_LEVEL"] = "DEBUG"
 
-from src.config import settings
+from backend.config import settings
 
 
 @pytest.fixture(scope="session")

@@ -4,12 +4,12 @@ import pytest
 from unittest.mock import Mock, patch, mock_open
 from pathlib import Path
 
-from src.services.chunking.service import ChunkingService
-from src.services.chunking.base import ChunkingConfig
-from src.services.chunking.semantic_chunker import SemanticChunker
-from src.services.chunking.document_processor import DocumentProcessor
-from src.models.schemas import ContentCategory, Chunk
-from src.core.exceptions import ChunkingError
+from backend.services.chunking.service import ChunkingService
+from backend.services.chunking.base import ChunkingConfig
+from backend.services.chunking.semantic_chunker import SemanticChunker
+from backend.services.chunking.document_processor import DocumentProcessor
+from backend.models.schemas import ContentCategory, Chunk
+from backend.core.exceptions import ChunkingError
 
 
 class TestSemanticChunker:
@@ -255,21 +255,44 @@ class TestChunkingService:
         """Test chunk validation."""
         service = ChunkingService()
         
-        # Create mock chunks with different qualities
-        good_chunk = Mock(spec=Chunk)
-        good_chunk.content = "This is a good chunk with meaningful content."
-        good_chunk.metadata.tokens = 50
-        good_chunk.id = "good_chunk"
+        # Create real Chunk objects with different qualities
+        from backend.models.schemas import ChunkMetadata
         
-        short_chunk = Mock(spec=Chunk)
-        short_chunk.content = "Short"
-        short_chunk.metadata.tokens = 5
-        short_chunk.id = "short_chunk"
+        good_chunk = Chunk(
+            id="good_chunk",
+            content="This is a good chunk with meaningful content.",
+            metadata=ChunkMetadata(
+                document_id="doc1",
+                chunk_index=0,
+                source="test",
+                category=ContentCategory.YOGA,
+                tokens=50
+            )
+        )
         
-        empty_chunk = Mock(spec=Chunk)
-        empty_chunk.content = "   "
-        empty_chunk.metadata.tokens = 1
-        empty_chunk.id = "empty_chunk"
+        short_chunk = Chunk(
+            id="short_chunk",
+            content="Short",
+            metadata=ChunkMetadata(
+                document_id="doc1",
+                chunk_index=1,
+                source="test",
+                category=ContentCategory.YOGA,
+                tokens=5
+            )
+        )
+        
+        empty_chunk = Chunk(
+            id="empty_chunk",
+            content="   ",
+            metadata=ChunkMetadata(
+                document_id="doc1",
+                chunk_index=2,
+                source="test",
+                category=ContentCategory.YOGA,
+                tokens=1
+            )
+        )
         
         chunks = [good_chunk, short_chunk, empty_chunk]
         validated = service._validate_chunks(chunks)
@@ -281,18 +304,44 @@ class TestChunkingService:
         """Test chunking statistics generation."""
         service = ChunkingService()
         
-        # Create mock chunks
-        chunk1 = Mock(spec=Chunk)
-        chunk1.metadata.tokens = 100
-        chunk1.metadata.category = ContentCategory.YOGA
+        # Create real Chunk objects
+        from backend.models.schemas import ChunkMetadata
         
-        chunk2 = Mock(spec=Chunk)
-        chunk2.metadata.tokens = 150
-        chunk2.metadata.category = ContentCategory.YOGA
+        chunk1 = Chunk(
+            id="chunk1",
+            content="Test content 1",
+            metadata=ChunkMetadata(
+                document_id="doc1",
+                chunk_index=0,
+                source="test",
+                category=ContentCategory.YOGA,
+                tokens=100
+            )
+        )
         
-        chunk3 = Mock(spec=Chunk)
-        chunk3.metadata.tokens = 200
-        chunk3.metadata.category = ContentCategory.MEDITATION
+        chunk2 = Chunk(
+            id="chunk2",
+            content="Test content 2",
+            metadata=ChunkMetadata(
+                document_id="doc1",
+                chunk_index=1,
+                source="test",
+                category=ContentCategory.YOGA,
+                tokens=150
+            )
+        )
+        
+        chunk3 = Chunk(
+            id="chunk3",
+            content="Test content 3",
+            metadata=ChunkMetadata(
+                document_id="doc2",
+                chunk_index=0,
+                source="test",
+                category=ContentCategory.MEDITATION,
+                tokens=200
+            )
+        )
         
         chunks = [chunk1, chunk2, chunk3]
         stats = service.get_chunking_stats(chunks)

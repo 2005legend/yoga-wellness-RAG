@@ -9,8 +9,8 @@ from unittest.mock import MagicMock, patch
 import uuid
 from datetime import datetime
 
-from src.models.schemas import Chunk, ChunkMetadata, ContentCategory
-from src.services.retrieval.vector_db import ChromaService, SearchResult
+from backend.models.schemas import Chunk, ChunkMetadata, ContentCategory
+from backend.services.retrieval.vector_db import ChromaService, SearchResult
 
 # Strategies
 @st.composite
@@ -61,7 +61,16 @@ class TestVectorDBProperties:
             mock_client = MagicMock()
             mock_collection = MagicMock()
             mock_client_cls.return_value = mock_client
+            
+            # Configure ALL collection accessors to return our tracked mock
             mock_client.get_or_create_collection.return_value = mock_collection
+            mock_client.get_collection.return_value = mock_collection
+            mock_client.create_collection.return_value = mock_collection
+            
+            # Mock metadata to avoid dimension mismatch logic (simulating checking existing collection)
+            # The test uses 384 dimensions for embedding strategy/test data
+            mock_collection.metadata = {"dimension": 384}
+            mock_collection.metadata.get = MagicMock(return_value=384)
             
             # Mock query return
             mock_collection.query.return_value = {
@@ -96,3 +105,4 @@ class TestVectorDBProperties:
             
             # Property: Retrieved ID matches searched ID (in this mocked scenario)
             # In a real DB test, we'd check semantic relevance, but here we check service integrity
+

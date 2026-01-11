@@ -6,18 +6,18 @@ import asyncio
 from unittest.mock import Mock, patch, AsyncMock
 import numpy as np
 
-from src.services.embeddings.base import EmbeddingConfig, EmbeddingResult
-from src.services.embeddings.sentence_transformer import (
+from backend.services.embeddings.base import EmbeddingConfig, EmbeddingResult
+from backend.services.embeddings.sentence_transformer import (
     SentenceTransformerService,
     SentenceTransformerConfig
 )
-from src.services.embeddings.service import (
+from backend.services.embeddings.service import (
     EmbeddingService,
     EmbeddingProvider,
     EmbeddingCache,
     EmbeddingServiceFactory
 )
-from src.core.exceptions import EmbeddingError, ConfigurationError
+from backend.core.exceptions import EmbeddingError, ConfigurationError
 
 
 class TestEmbeddingConfig:
